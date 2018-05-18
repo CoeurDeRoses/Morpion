@@ -1,0 +1,10 @@
+A:\C# Training\Morpion\bin\Debug\Morpion.exe.config
+A:\C# Training\Morpion\bin\Debug\Morpion.exe
+A:\C# Training\Morpion\bin\Debug\Morpion.pdb
+A:\C# Training\Morpion\obj\Debug\Morpion.csprojAssemblyReference.cache
+A:\C# Training\Morpion\obj\Debug\Morpion.Form1.resources
+A:\C# Training\Morpion\obj\Debug\Morpion.Properties.Resources.resources
+A:\C# Training\Morpion\obj\Debug\Morpion.csproj.GenerateResource.cache
+A:\C# Training\Morpion\obj\Debug\Morpion.csproj.CoreCompileInputs.cache
+A:\C# Training\Morpion\obj\Debug\Morpion.exe
+A:\C# Training\Morpion\obj\Debug\Morpion.pdb
