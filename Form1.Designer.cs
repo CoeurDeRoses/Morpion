@@ -44,10 +44,13 @@
             this.labelPoint2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.duelHumains = new System.Windows.Forms.Button();
+            this.buttonIA = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(130, 33);
             this.button1.Name = "button1";
@@ -58,6 +61,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(241, 33);
             this.button2.Name = "button2";
@@ -68,6 +72,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(352, 33);
             this.button3.Name = "button3";
@@ -78,6 +83,7 @@
             // 
             // button4
             // 
+            this.button4.Enabled = false;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(130, 144);
             this.button4.Name = "button4";
@@ -88,6 +94,7 @@
             // 
             // button5
             // 
+            this.button5.Enabled = false;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(241, 144);
             this.button5.Name = "button5";
@@ -98,6 +105,7 @@
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(352, 144);
             this.button6.Name = "button6";
@@ -108,6 +116,7 @@
             // 
             // button7
             // 
+            this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(130, 255);
             this.button7.Name = "button7";
@@ -118,6 +127,7 @@
             // 
             // button8
             // 
+            this.button8.Enabled = false;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Location = new System.Drawing.Point(241, 255);
             this.button8.Name = "button8";
@@ -128,6 +138,7 @@
             // 
             // button9
             // 
+            this.button9.Enabled = false;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.Location = new System.Drawing.Point(352, 255);
             this.button9.Name = "button9";
@@ -138,12 +149,13 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(130, 475);
+            this.button10.Location = new System.Drawing.Point(25, 475);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(139, 59);
             this.button10.TabIndex = 9;
             this.button10.Text = "Nouveau round";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Visible = false;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // label1
@@ -191,19 +203,42 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(352, 475);
+            this.button11.Location = new System.Drawing.Point(400, 475);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(128, 59);
             this.button11.TabIndex = 15;
             this.button11.Text = "Tout recommencer";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Visible = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // duelHumains
+            // 
+            this.duelHumains.Location = new System.Drawing.Point(200, 427);
+            this.duelHumains.Name = "duelHumains";
+            this.duelHumains.Size = new System.Drawing.Size(156, 42);
+            this.duelHumains.TabIndex = 16;
+            this.duelHumains.Text = "Joueur 1 vs Joueur 2";
+            this.duelHumains.UseVisualStyleBackColor = true;
+            this.duelHumains.Click += new System.EventHandler(this.duelHumains_Click);
+            // 
+            // buttonIA
+            // 
+            this.buttonIA.Location = new System.Drawing.Point(200, 492);
+            this.buttonIA.Name = "buttonIA";
+            this.buttonIA.Size = new System.Drawing.Size(156, 42);
+            this.buttonIA.TabIndex = 17;
+            this.buttonIA.Text = "Affronter Vegeta";
+            this.buttonIA.UseVisualStyleBackColor = true;
+            this.buttonIA.Click += new System.EventHandler(this.buttonIA_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 570);
+            this.Controls.Add(this.buttonIA);
+            this.Controls.Add(this.duelHumains);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelPoint2);
@@ -245,6 +280,8 @@
         private System.Windows.Forms.Label labelPoint2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button duelHumains;
+        private System.Windows.Forms.Button buttonIA;
     }
 }
 
