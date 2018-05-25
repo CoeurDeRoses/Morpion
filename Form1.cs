@@ -40,7 +40,7 @@ namespace Morpion
          * Il faudra aussi verouiller un bouton après qu'il est été sélectionné
         */
 
-        int tour = 1, pointJoueur1=0, pointJoueur2=0;
+        int tour = 1, pointJoueur1 = 0, pointJoueur2 = 0;
         //La variable pointJoueur2 sera utilisé pour Vegeta si on l'affronte
 
         private void Activation()// Les bouttons sont activés une fois le mode choisie
@@ -62,7 +62,7 @@ namespace Morpion
         //Dabord on choisi soit le mode 2 joueurs
         /*Il y'aura une variable booleen qui déterminera si le code duel entre humain sera éxecuter
          ou si le code contre l'IA sera executer, l'IA se nommera Vegeta pour le fun*/
-         // la variable adversaire affiche le nom de l'opposant
+        // la variable adversaire affiche le nom de l'opposant
 
         bool mode = true;// True pour le duel d'humain
         string adversaire = "";// Necessaire pour affecter la chaine
@@ -92,13 +92,22 @@ namespace Morpion
             duelHumains.Visible = false; buttonIA.Visible = false;
             Activation();
         }
+        // Même si le joueur 1 gagne Vegeta va quand même continuer à jouer
+        // Et executer le code suivant il faut donc que l'ordinateur comprenne
+        // qu'il ne doit pas éxecuter le code la méthode vérifier s'execute après
+        // et ne l'arrêtera pas. Nous devons donc
+        // en tant que développeur ... Arrêter Vegeta ! tel est notre devoir !
+        // La variable suivante sera incrémenter à chaque appuie
+        int appuie = 0;
+        // Le 5 ème appui du joueur contre l'IA sera toujours le dernier
 
         // BOUTTON 1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(mode && tour%2==0)// Si c'est pair X et que le mode 
-                // joueur 1 vs joueur 2 est activé
+            appuie += 1;
+            if (mode && tour % 2 == 0)// Si c'est pair X et que le mode 
+                                      // joueur 1 vs joueur 2 est activé
             {
                 button1.Text = "X";
                 // le joueur 2 vient d'effectuer son tour, le label 3 indiquera le tour du joueur 1
@@ -106,23 +115,23 @@ namespace Morpion
                 // Vérouillage du bouton
                 button1.Enabled = false;
 
-                
+
             }
 
             // Ce code ne sera pas éxecuter si on affronte pas vegeta
             if ((tour % 2 != 0) || !mode) // Sinon O
-                // Mettre mode vegeta false donc a || permet d'ignorer la condition du nombre de
-                // tour impair obligatoire sinon on ne peut pas rentrer le pour vegeta au tour pair dans le
-                // if imbriqué
+                                          // Mettre mode vegeta false donc a || permet d'ignorer la condition du nombre de
+                                          // tour impair obligatoire sinon on ne peut pas rentrer le pour vegeta au tour pair dans le
+                                          // if imbriqué
             {
                 button1.Text = "O";
                 // le joueur 1 vient d'effectuer son tour, le label 3 indiquera le tour du joueur 2
-                label3.Text = "Tour de "+adversaire;
+                label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button1.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
-                    Vegeta(); 
+                    Vegeta();
                 }
             }
 
@@ -130,7 +139,7 @@ namespace Morpion
             // il faut mettre le match aussi et conditionner le code pour vegeta après le ||
             // C'est à dire que la variable tour sera incrémenté 5 fois pour arrivé à un match nul
             // Elle n'est pas incrémenter que l'IA joue
-            if (tour == 9 || (tour==5 && !mode))// Après avoir effectué les 9 tours le round est terminé
+            if (tour == 9 || (tour == 5 && !mode))// Après avoir effectué les 9 tours le round est terminé
             {
                 label3.Text = "Personne ne gagne ce round";
             }
@@ -142,6 +151,7 @@ namespace Morpion
         // BOUTTON 2
         private void button2_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button2.Text = "X";
@@ -159,8 +169,8 @@ namespace Morpion
                 // le joueur 1 vient d'effectuer son tour, le label 3 indiquera le tour du joueur 2
                 label2.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
-                button1.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                button2.Enabled = false;
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -173,13 +183,14 @@ namespace Morpion
                 label3.Text = "Personne ne gagne ce round";
             }
 
-
             tour += 1;
+
         }
 
         // BOUTTON 3
         private void button3_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button3.Text = "X";
@@ -197,7 +208,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button3.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -210,14 +221,15 @@ namespace Morpion
                 label3.Text = "Personne ne gagne ce round";
             }
 
-
             tour += 1;
+
         }
 
 
         // BOUTTON 4
         private void button4_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button4.Text = "X";
@@ -235,7 +247,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button4.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -248,13 +260,14 @@ namespace Morpion
                 label3.Text = "Personne ne gagne ce round";
             }
 
-
             tour += 1;
+
         }
 
         // BOUTTON 5
         private void button5_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button5.Text = "X"; label3.Text = "Tour du joueur 1";
@@ -272,7 +285,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button5.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -293,6 +306,7 @@ namespace Morpion
         // BOUTTON 6
         private void button6_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button6.Text = "X"; label3.Text = "Tour du joueur 1";
@@ -310,7 +324,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button6.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -330,6 +344,7 @@ namespace Morpion
         // BOUTTON 7
         private void button7_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button7.Text = "X"; label3.Text = "Tour du joueur 1";
@@ -347,7 +362,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button7.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -367,6 +382,7 @@ namespace Morpion
         // BOUTTON 8
         private void button8_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button8.Text = "X"; label3.Text = "Tour du joueur 1";
@@ -384,7 +400,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button8.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -406,6 +422,7 @@ namespace Morpion
         // BOUTTON 9
         private void button9_Click(object sender, EventArgs e)
         {
+            appuie += 1;
             if (mode && tour % 2 == 0)
             {
                 button9.Text = "X"; label3.Text = "Tour du joueur 1";
@@ -423,7 +440,7 @@ namespace Morpion
                 label3.Text = "Tour de " + adversaire;
                 // Vérouillage du bouton
                 button9.Enabled = false;
-                if (!mode)//après que le joueur un appuie Vegeta joue juste après
+                if (!mode && appuie!=5)//après que le joueur un appuie Vegeta joue juste après
                 {
                     Vegeta();
                 }
@@ -438,10 +455,10 @@ namespace Morpion
 
             tour += 1;
 
-            
+
         }
 
-        
+
         private void Verifier()
         {
             /* On utilisera 8 tableaux donc chacun contiendra un allignement
@@ -466,7 +483,7 @@ namespace Morpion
 
             // et maintenant un tableau.... de tableaux XD LOL MDR PTDR
             Button[][] tab9 = { tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 };
-            
+
             // On va pouvoir tester dans la boucle dorénavant
             // Il faudra un boolean pour dire si il y'a une victoire
             // Cela permettra de réinitaliser les variables nécessaires
@@ -474,22 +491,23 @@ namespace Morpion
 
             bool victoire = false;
 
-            for(int i=0; i<8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 //a chaque tour on test un allignement
                 // En vérifiant la correspondance des boutons posséder par chaque tableau
 
-                if(tab9[i][0].Text == "O" && tab9[i][1].Text=="O" && tab9[i][2].Text=="O")
-                    //Si le joueur 1 gagne
+                if (tab9[i][0].Text == "O" && tab9[i][1].Text == "O" && tab9[i][2].Text == "O")
+                //Si le joueur 1 gagne
                 {
                     label3.Text = "Le joueur 1 a gagner ce round ";
                     pointJoueur1 += 1;
                     labelPoint1.Text = pointJoueur1.ToString();
                     victoire = true;
+                    appuie = 0; // On réintialise ou cas ou on affronte Vegeta
                 }
 
                 if (tab9[i][0].Text == "X" && tab9[i][1].Text == "X" && tab9[i][2].Text == "X")
-                    //Si le joueur 2 gagne ou Vegeta
+                //Si le joueur 2 gagne ou Vegeta
                 {
 
                     label3.Text = adversaire + " a gagner ce round ";
@@ -499,12 +517,12 @@ namespace Morpion
                 }
             }
 
-            if(victoire)
+            if (victoire)
             {
-                for(int i=0; i<3; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     // A chaque tour on vérouille 3 bouton d'une ligne
-                    tab9[i][0].Enabled= false;
+                    tab9[i][0].Enabled = false;
                     tab9[i][1].Enabled = false;
                     tab9[i][2].Enabled = false;
                 }
@@ -514,7 +532,7 @@ namespace Morpion
 
         }
 
-        
+
 
 
         // LE BOUTON NOUVEAU ROUND 
@@ -587,19 +605,27 @@ namespace Morpion
             button9.Text = "";
 
             pointJoueur1 = 0; labelPoint1.Text = "";
-            
+
             pointJoueur2 = 0; labelPoint2.Text = "";
 
             button11.Visible = false; button10.Visible = false;
             buttonIA.Visible = true; duelHumains.Visible = true;
             mode = true;
         }
-        Button[][] tabPourVegeta;
+        private Button[][] tabPourVegeta;
         Random aleatoire = new Random();// L'IA remplira de manière aléatoire
         // Oui elle est faible en stratégie pour l'instant :D
         int pos1 = 0, pos2;
         private void Vegeta()
         {
+
+            // Même si le joueur 1 gagne Vegeta va quand même continuer à jouer
+            // Et executer le code suivant il faut donc que l'ordinateur comprenne
+            // qu'il ne doit pas éxecuter le code la méthode vérifier s'execute après
+            // et ne l'arrêtera pas. Nous devons donc
+            // en tant que développeur ... Arrêter Vegeta ! tel est notre devoir !
+
+
             //Lignes
             Button[] tab1 = { button1, button2, button3 };
             Button[] tab2 = { button4, button5, button6 };
@@ -614,13 +640,15 @@ namespace Morpion
             Button[] tab7 = { button1, button5, button9 };
             Button[] tab8 = { button7, button5, button3 };
 
-            Button[][] tab = {tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 };
+            Button[][] tab = { tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 };
             tabPourVegeta = tab;
 
 
             pos1 = aleatoire.Next(0, 7); // Choix du tableau
             pos2 = aleatoire.Next(0, 2); // Choix de la case
-            if(tabPourVegeta[pos1][pos2].Text == "")
+
+
+            if (tabPourVegeta[pos1][pos2].Text == "")
             {
                 tabPourVegeta[pos1][pos2].Text = "X";
                 tabPourVegeta[pos1][pos2].Enabled = false;// désactiver la case
@@ -631,6 +659,11 @@ namespace Morpion
             {
                 Vegeta();// Un peu comme une boucle mais de manière récursive
             }
+
         }
+
     }
+
+    
+
 }
