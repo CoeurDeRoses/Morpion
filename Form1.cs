@@ -56,6 +56,19 @@ namespace Morpion
             button9.Enabled = true;
         }
 
+        private void DesActivation()// Les bouttons sont activés une fois le mode choisie
+        {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button9.Enabled = false;
+        }
+
 
 
 
@@ -643,7 +656,7 @@ namespace Morpion
             Button[][] tab = { tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 };
             tabPourVegeta = tab;
 
-
+            /*
             pos1 = aleatoire.Next(0, 7); // Choix du tableau
             pos2 = aleatoire.Next(0, 2); // Choix de la case
 
@@ -659,7 +672,116 @@ namespace Morpion
             {
                 Vegeta();// Un peu comme une boucle mais de manière récursive
             }
+            */
 
+            /*
+             * La stratégie que Vegeta emploira pourra battre le joueur 1 est la suivante
+             * Comme il commence toujours après il va toujours mettre une croix prêt du J1, diminutif joueur1,
+             * pour directement bloquer une possibilité d'alignement
+             * 
+             * condition A Bloqueur
+             * Une boucle parcourera tout les tableaux et s'arrêtera dès que la position du J1 est trouvé
+             * une croix sera affecté alors à côté 
+             * 
+             * 
+             * condition B Bloqueur
+             * Avant cela il faudra mettre la condition disant que si Vegeta voit deux O il doit bloquer l'alignement
+             * sinon le J1 pourra mettre 3 O alors que Vegeta va chercher à bloquer un O
+             * si il va dans la condition,qu'elle est vrai donc et qu'on la mets en première il ne pourra pas tester la B
+             * car une condition égale 1 tour
+             * 
+             * Condition C Takedown 
+             * qui sera testé en première, si Vegeta voit 2 deux croix alignés,  et un champ vide 
+             * a la  suite ou entre elles
+             * permettant de mettre une troisième il le fait.
+             * 
+             * On se servira de l'instruction goto pour sortir complètement du foreac het s'assurer qu'un seul
+             * par vegeta est joué
+             * 
+             * un foreach pour chaque Condition
+             * 
+             */
+
+            foreach (Button[] tableau in tabPourVegeta)// On vérifie un alignement par tour
+            {
+                // Si il voit une opportunité de faire 3 crois alignés 
+                // Takedown C
+                if (tableau[0].Text == "X" && tableau[1].Text == "X" && tableau[2].Text == ""
+                    || tableau[0].Text == "X" && tableau[1].Text == "" && tableau[2].Text == "X"
+                    || tableau[0].Text == "" && tableau[1].Text == "X" && tableau[2].Text == "X")
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (tableau[i].Text == "")
+                        {
+                            tableau[i].Text = "X"; label3.Text = "Tour du joueur 1";
+                            tableau[i].Enabled = false;
+                            goto Tourfini;
+                        }
+                    }
+
+
+                }
+            }
+
+            // Si il voit un potentiel alignement du J1 il le bloque dans le champ vide
+            //Bloqueur B
+
+            foreach (Button[] tableau in tabPourVegeta)// On vérifie un alignement par tour
+            {
+               
+                if (tableau[0].Text == "O" && tableau[1].Text == "O" && tableau[2].Text == ""
+                    || tableau[0].Text == "O" && tableau[1].Text == "" && tableau[2].Text == "O"
+                    || tableau[0].Text == "" && tableau[1].Text == "O" && tableau[2].Text == "O")
+                {
+                    for (int i = 0; i < 3; i++)// il parcours le tableau en cours et met une croix dans le champ vide
+                    {
+                        if (tableau[i].Text == "")
+                        {
+                            tableau[i].Text = "X"; label3.Text = "Tour du joueur 1";
+                            tableau[i].Enabled = false;
+                            goto Tourfini;
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+            //Il place sa croix à côté pour bloquer une possibilité
+            //Bloqueur A
+            foreach (Button[] tableau in tabPourVegeta)// On vérifie un alignement par tour
+            {
+                
+            if (tableau[0].Text == "O" && tableau[1].Text == "" && tableau[2].Text == "")
+                {
+                    tableau[1].Text = "X";
+                    label3.Text = "Tour du joueur 1";
+                    tableau[1].Enabled = false;
+                    goto Tourfini;
+                }
+                //Bloqueur A
+                if (tableau[0].Text == "" && tableau[1].Text == "O" && tableau[2].Text == "")
+                {
+                    tableau[0].Text = "X";
+                    label3.Text = "Tour du joueur 1";
+                    tableau[0].Enabled = false;
+                    goto Tourfini;
+                }
+                //Bloqueur A
+                if (tableau[0].Text == "" && tableau[1].Text == "" && tableau[2].Text == "O")
+                {
+                    tableau[1].Text = "X";
+                    label3.Text = "Tour du joueur 1";
+                    tableau[1].Enabled = false;
+                    goto Tourfini;
+                }
+
+            }
+
+            Tourfini:;
         }
 
     }
