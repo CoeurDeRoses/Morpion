@@ -504,6 +504,8 @@ namespace Morpion
 
             bool victoire = false;
 
+            //Un goto sera nécessaire car si une case remplie au milieu joint de alignement en même temps
+            // de même symbole le programme accordera deux points en un round
             for (int i = 0; i < 8; i++)
             {
                 //a chaque tour on test un allignement
@@ -517,6 +519,8 @@ namespace Morpion
                     labelPoint1.Text = pointJoueur1.ToString();
                     victoire = true;
                     appuie = 0; // On réintialise ou cas ou on affronte Vegeta
+
+                    goto terminer;
                 }
 
                 if (tab9[i][0].Text == "X" && tab9[i][1].Text == "X" && tab9[i][2].Text == "X")
@@ -527,8 +531,11 @@ namespace Morpion
                     pointJoueur2 += 1;
                     labelPoint2.Text = pointJoueur2.ToString();
                     victoire = true;
+
+                    goto terminer;
                 }
             }
+            terminer:;
 
             if (victoire)
             {
@@ -656,23 +663,7 @@ namespace Morpion
             Button[][] tab = { tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 };
             tabPourVegeta = tab;
 
-            /*
-            pos1 = aleatoire.Next(0, 7); // Choix du tableau
-            pos2 = aleatoire.Next(0, 2); // Choix de la case
-
-
-            if (tabPourVegeta[pos1][pos2].Text == "")
-            {
-                tabPourVegeta[pos1][pos2].Text = "X";
-                tabPourVegeta[pos1][pos2].Enabled = false;// désactiver la case
-
-                label3.Text = "Tour du joueur 1";
-            }
-            else// Si on tombe sur O ou X on recherche une autre postion libre
-            {
-                Vegeta();// Un peu comme une boucle mais de manière récursive
-            }
-            */
+            
 
             /*
              * La stratégie que Vegeta emploira pourra battre le joueur 1 est la suivante
